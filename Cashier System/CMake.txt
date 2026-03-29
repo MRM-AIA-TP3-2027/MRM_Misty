@@ -1,0 +1,31 @@
+cmake_minimum_required(VERSION 3.8)
+project(cashier_system)
+
+find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(rosidl_default_generators REQUIRED)
+
+rosidl_generate_interfaces(${PROJECT_NAME}
+  "msg/Bill.msg"
+  "srv/GetStatus.srv"
+)
+
+ament_export_dependencies(rosidl_default_runtime)
+
+add_executable(bill_generator src/bill_generator.cpp)
+ament_target_dependencies(bill_generator rclcpp ${PROJECT_NAME})
+
+add_executable(inventory_node src/inventory_node.cpp)
+ament_target_dependencies(inventory_node rclcpp ${PROJECT_NAME})
+
+add_executable(status_node src/status_node.cpp)
+ament_target_dependencies(status_node rclcpp ${PROJECT_NAME})
+
+install(TARGETS
+  bill_generator
+  inventory_node
+  status_node
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+ament_package()
