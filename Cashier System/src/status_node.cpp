@@ -13,10 +13,6 @@ public:
 
 private:
     void run() {
-        if (!client_->wait_for_service(std::chrono::seconds(1))) {
-            RCLCPP_WARN(this->get_logger(), "Waiting for service...");
-            return;
-        }
 
         auto request = std::make_shared<cashier_system::srv::GetStatus::Request>();
         auto future = client_->async_send_request(request);
