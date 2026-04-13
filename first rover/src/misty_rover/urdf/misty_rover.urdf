@@ -1,0 +1,499 @@
+<?xml version="1.0"?>
+<robot name="misty_rover">
+
+  <!-- BASE -->
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="1 1 1"/>
+      </geometry>
+      <material name="red">
+        <color rgba="1 0 0 1"/>
+      </material>
+    </visual>
+
+    <collision>
+      <geometry>
+        <box size="1 1 1"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <mass value="1.0"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.1" iyy="0.1" izz="0.1"
+               ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <!-- MAST -->
+ <link name="mast_link">
+  <visual>
+    <geometry>
+      <cylinder radius="0.03" length="0.5"/>
+    </geometry>
+    <material name="gray">
+      <color rgba="0.5 0.5 0.5 1"/>
+    </material>
+  </visual>
+
+  <collision>
+    <geometry>
+      <cylinder radius="0.03" length="0.5"/>
+    </geometry>
+  </collision>
+
+  <inertial>
+    <mass value="0.2"/>
+    <inertia ixx="0.01" iyy="0.01" izz="0.01"
+             ixy="0" ixz="0" iyz="0"/>
+  </inertial>
+ </link>
+
+ <joint name="mast_joint" type="fixed">
+  <parent link="base_link"/>
+  <child link="mast_link"/>
+  <origin xyz="0 0 0.5"/>
+ </joint>
+
+  <!-- WHEELS -->
+  <!-- FRONT LEFT -->
+  <link name="wheel_1">
+    <visual>
+      <origin rpy="1.57 0 0"/>
+      <geometry>
+        <cylinder radius="0.2" length="0.1"/>
+      </geometry>
+      <material name="black">
+       <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="1.57 0 0"/>
+      <geometry>
+        <cylinder radius="0.2" length="0.1"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1"/>
+      <inertia ixx="0.1" iyy="0.1" izz="0.1"
+               ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <joint name="wheel_1_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel_1"/>
+    <origin xyz="0.5 0.4 -0.6"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <!-- FRONT RIGHT -->
+  <link name="wheel_2">
+    <visual>
+      <origin rpy="1.57 0 0"/>
+      <geometry>
+        <cylinder radius="0.2" length="0.1"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin rpy="1.57 0 0"/>
+      <geometry>
+        <cylinder radius="0.2" length="0.1"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1"/>
+      <inertia ixx="0.1" iyy="0.1" izz="0.1"
+               ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <joint name="wheel_2_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel_2"/>
+    <origin xyz="0.5 -0.4 -0.6"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <!-- REAR LEFT -->
+  <link name="wheel_3">
+    <visual>
+      <origin rpy="1.57 0 0"/>
+      <geometry>
+        <cylinder radius="0.2" length="0.1"/>
+      </geometry>
+      <material name="black">
+       <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="1.57 0 0"/>
+      <geometry>
+        <cylinder radius="0.2" length="0.1"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1"/>
+      <inertia ixx="0.1" iyy="0.1" izz="0.1"
+               ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <joint name="wheel_3_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel_3"/>
+    <origin xyz="-0.5 0.4 -0.6"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <!-- REAR RIGHT -->
+  <link name="wheel_4">
+    <visual>
+      <origin rpy="1.57 0 0"/>
+      <geometry>
+        <cylinder radius="0.2" length="0.1"/>
+      </geometry>
+      <material name="black">
+       <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="1.57 0 0"/>
+      <geometry>
+        <cylinder radius="0.2" length="0.1"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1"/>
+      <inertia ixx="0.1" iyy="0.1" izz="0.1"
+               ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <joint name="wheel_4_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel_4"/>
+    <origin xyz="-0.5 -0.4 -0.6"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <!-- CAMERA -->
+  <link name="camera_link">
+    <visual>
+      <geometry>
+        <box size="0.15 0.15 0.15"/>
+      </geometry>
+      <material name="black">
+       <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.17 0.17 0.2"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.5"/>
+      <inertia ixx="0.01" iyy="0.01" izz="0.01"
+               ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <joint name="camera_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="camera_link"/>
+    <origin xyz="0.5 0 0.55"/>
+  </joint>
+ 
+ <!-- LIDAR -->
+  <link name="lidar_link">
+  <visual>
+    <geometry>
+      <cylinder radius="0.1" length="0.05"/>
+    </geometry>
+    <material name="blue">
+      <color rgba="0 0 1 1"/>
+    </material>
+  </visual>
+
+  <collision>
+    <geometry>
+      <cylinder radius="0.1" length="0.05"/>
+    </geometry>
+  </collision>
+
+  <inertial>
+    <mass value="0.5"/>
+    <inertia ixx="0.01" iyy="0.01" izz="0.01"
+             ixy="0" ixz="0" iyz="0"/>
+  </inertial>
+  </link>
+
+  <joint name="lidar_joint" type="fixed">
+   <parent link="mast_link"/>
+   <child link="lidar_link"/>
+   <origin xyz="0.0 0 0.3"/>
+  </joint>
+
+  <!-- CAMERA SENSOR -->
+  <gazebo reference="camera_link">
+    <sensor type="camera" name="camera">
+      <always_on>true</always_on>
+      <update_rate>30</update_rate>
+
+      <camera>
+        <horizontal_fov>1.396</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+      </camera>
+
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so"/>
+    </sensor>
+  </gazebo>
+   
+  <!-- LIDAR SENSOR -->
+  <gazebo reference="lidar_link">
+  <sensor type="ray" name="lidar">
+    
+    <update_rate>10</update_rate>
+
+    <ray>
+      <scan>
+        <horizontal>
+          <samples>360</samples>
+          <min_angle>-3.14</min_angle>
+          <max_angle>3.14</max_angle>
+        </horizontal>
+      </scan>
+
+      <range>
+        <min>0.2</min>
+        <max>10.0</max>
+      </range>
+    </ray>
+
+  <plugin name="lidar_plugin" filename="libgazebo_ros_ray_sensor.so">
+    <ros>
+      <namespace>/</namespace>
+      <remapping>~/out:=/scan</remapping>
+    </ros>
+  </plugin>
+  
+  </sensor>
+ </gazebo>
+ <!-- IMU -->
+ <link name="imu_link">
+  <visual>
+    <geometry>
+      <box size="0.1 0.1 0.05"/>
+    </geometry>
+    <material name="green">
+      <color rgba="0 1 0 1"/>
+    </material>
+  </visual>
+
+  <collision>
+    <geometry>
+      <box size="0.1 0.1 0.55"/>
+    </geometry>
+  </collision>
+
+  <inertial>
+    <mass value="0.2"/>
+    <inertia ixx="0.01" iyy="0.01" izz="0.01"
+             ixy="0" ixz="0" iyz="0"/>
+  </inertial>
+ </link>
+
+ <joint name="imu_joint" type="fixed">
+  <parent link="base_link"/>
+  <child link="imu_link"/>
+  <origin xyz="0 0 0.5"/>
+ </joint>
+
+ <gazebo reference="imu_link">
+  <sensor name="imu_sensor" type="imu">
+    <always_on>true</always_on>
+    <update_rate>50</update_rate>
+
+    <plugin name="imu_plugin" filename="libgazebo_ros_imu_sensor.so">
+      <ros>
+        <namespace>/</namespace>
+        <remapping>~/out:=/imu</remapping>
+      </ros>
+    </plugin>
+
+  </sensor>
+ </gazebo>
+
+ <!-- GPS -->
+ <link name="gps_link">
+  <visual>
+    <geometry>
+      <cylinder radius="0.15" length="0.05"/>
+    </geometry>
+    <material name="yellow">
+      <color rgba="1 1 0 1"/>
+    </material>
+  </visual>
+  <collision>
+    <geometry>
+      <cylinder radius="0.05" length="0.05"/>
+    </geometry>
+  </collision>
+
+  <inertial>
+    <mass value="0.1"/>
+    <inertia ixx="0.01" iyy="0.01" izz="0.01"
+             ixy="0" ixz="0" iyz="0"/>
+  </inertial>
+ </link>
+
+ <joint name="gps_joint" type="fixed">
+  <parent link="mast_link"/>
+  <child link="gps_link"/>
+  <origin xyz="0 0 0.1"/>
+ </joint>
+
+ <gazebo reference="gps_link">
+  <sensor type="gps" name="gps_sensor">
+    <always_on>true</always_on>
+    <update_rate>1</update_rate>
+
+    <plugin name="gps_plugin" filename="libgazebo_ros_gps_sensor.so">
+      <ros>
+        <namespace>/</namespace>
+        <remapping>~/out:=/gps</remapping>
+        <remapping>~/vel:=/gps/vel</remapping>
+      </ros>
+    </plugin>
+
+  </sensor>
+ </gazebo>
+ <!-- ZED LEFT CAMERA -->
+ <link name="zed_left_link">
+  <visual>
+    <geometry>
+      <box size="0.1 0.05 0.05"/>
+    </geometry>
+    <material name="blue">
+      <color rgba="0 0 1 1"/>
+    </material>
+  </visual>
+ </link>
+
+ <joint name="zed_left_joint" type="fixed">
+  <parent link="base_link"/>
+  <child link="zed_left_link"/>
+  <origin xyz="0.55 0.03 0.55"/>
+ </joint>
+
+
+<!-- ZED RIGHT CAMERA -->
+<link name="zed_right_link">
+  <visual>
+    <geometry>
+      <box size="0.1 0.05 0.05"/>
+    </geometry>
+    <material name="blue"/>
+  </visual>
+</link>
+
+<joint name="zed_right_joint" type="fixed">
+  <parent link="base_link"/>
+  <child link="zed_right_link"/>
+  <origin xyz="0.55 -0.03 0.55"/>
+</joint>
+<!-- LEFT CAMERA SENSOR -->
+<gazebo reference="zed_left_link">
+  <sensor type="camera" name="left_camera">
+    <always_on>true</always_on>
+    <update_rate>30</update_rate>
+
+    <camera>
+      <horizontal_fov>1.396</horizontal_fov>
+      <image>
+        <width>640</width>
+        <height>480</height>
+        <format>B8G8R8</format>
+      </image>
+      <clip>
+        <near>0.1</near>
+        <far>100</far>
+      </clip>
+    </camera>
+
+    <plugin name="left_camera_controller" filename="libgazebo_ros_camera.so">
+      <ros>
+        <namespace>/zed/left</namespace>
+      </ros>
+    </plugin>
+  </sensor>
+</gazebo>
+
+
+<!-- RIGHT CAMERA SENSOR -->
+<gazebo reference="zed_right_link">
+  <sensor type="camera" name="right_camera">
+    <always_on>true</always_on>
+    <update_rate>30</update_rate>
+
+    <camera>
+      <horizontal_fov>1.396</horizontal_fov>
+      <image>
+        <width>640</width>
+        <height>480</height>
+        <format>B8G8R8</format>
+      </image>
+      <clip>
+        <near>0.1</near>
+        <far>100</far>
+      </clip>
+    </camera>
+
+    <plugin name="right_camera_controller" filename="libgazebo_ros_camera.so">
+      <ros>
+        <namespace>/zed/right</namespace>
+      </ros>
+    </plugin>
+  </sensor>
+ </gazebo>
+
+ <gazebo>
+  <plugin name="diff_drive" filename="libgazebo_ros_diff_drive.so">
+
+    <ros>
+      <namespace>/</namespace>
+    </ros>
+
+    <update_rate>50</update_rate>
+
+    <left_joint>wheel_1_joint</left_joint>
+    <right_joint>wheel_2_joint</right_joint>
+
+    <wheel_separation>0.4</wheel_separation>
+    <wheel_diameter>0.15</wheel_diameter>
+
+    <max_wheel_torque>200</max_wheel_torque>
+    <max_wheel_acceleration>10.0</max_wheel_acceleration>
+
+    <command_topic>/cmd_vel</command_topic>
+    <odometry_topic>/odom</odometry_topic>
+
+    <odometry_frame>odom</odometry_frame>
+    <robot_base_frame>base_link</robot_base_frame>
+
+    <publish_odom>true</publish_odom>
+    <publish_odom_tf>true</publish_odom_tf>
+
+    <odometry_frame>odom</odometry_frame>
+    <robot_base_frame>base_link</robot_base_frame>
+
+  </plugin>
+</gazebo>
+</robot>
